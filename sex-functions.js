@@ -55,7 +55,22 @@ function determineSex(species,age,billLength,billDepth,headLength,footLength) {
       } else {
         return false;
       }
-  
+  } else if (species=="Eastern Rockhopper penguin") {
+    if(!billLength) { return false; }
+    if(age=="Chick") {
+      var dL = 0.468*billLength-16.856;
+      //http://doi.org/10.1675/063.041.0407
+    } else {
+      var dL = 0.622*billLength-27.350;
+      //https://doi.org/10.5253/078.098.0212
+    }
+    if(dL<=0) {
+      return "Female";
+    } else {
+     return "Male"; 
+    }
+    
+    
   } else if (species=="Humboldt penguin") {
     if(!footLength) { return false; }
     if(!billDepth) { return false; }
