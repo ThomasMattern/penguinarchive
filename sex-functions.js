@@ -2,11 +2,12 @@ function determineSex(species,age,billLength,billDepth,headLength,footLength) {
   if(!species) { return false; }
   if(!age) { return false; }
   if(species=="Little penguin") {
+    //https://doi.org/10.1071/MU99009C
     if(age=="Adult") {
       if(!billLength) { return false; }
       if(!billDepth) { return false; }
-      var dL = -4.59116+0.230657*billDepth+0.034646*billLength;
-      if(dL<=0) {
+      var dL = 1.245*billDepth+0.202*billLength-26.459;
+      if(dL>0.311) {
         return "Female";
       } else {
         return "Male";
@@ -15,6 +16,7 @@ function determineSex(species,age,billLength,billDepth,headLength,footLength) {
       return false; 
     }
   } else if (species=="Fiordland penguin") {
+    //Notornis 68(3):188-193
     if(age=="Adult") {
       if(!footLength) { return false; }
       if(footLength<113.5) { return "Female"; }   
@@ -30,6 +32,7 @@ function determineSex(species,age,billLength,billDepth,headLength,footLength) {
      return false; 
     }
   } else if (species=="Yellow-eyed penguin") {
+    //https://www.jstor.org/stable/1522493
     if(!footLength) { return false; }
     if(!headLength) { return false; }
     if(age=="Chick") {
@@ -43,6 +46,7 @@ function determineSex(species,age,billLength,billDepth,headLength,footLength) {
       return "Male";
     }  
   } else if (species=="Erect-crested penguin") {
+      //https://doi.org/10.1371/journal.pone.0275106
       if(!billLength) { return false; }
       if(!billDepth) { return false; }
       if(age=="Adult") {
@@ -72,13 +76,15 @@ function determineSex(species,age,billLength,billDepth,headLength,footLength) {
     
     
   } else if (species=="Humboldt penguin") {
+    //http://www.jstor.org/stable/25148354
     if(!footLength) { return false; }
     if(!billDepth) { return false; }
-    var dL = 42.889-0.244*billDepth-1.052*footLength;
-    if(dL<=0) {
+    var dL = Math.exp(42.889-0.244*billLength-1.052*billDepth);
+    dL = dL/(1+dL);
+    if(dL>-0.5) {
       return "Female";
     } else {
-     return "Male"; 
+      return "Male"; 
     }
     
   } else {
