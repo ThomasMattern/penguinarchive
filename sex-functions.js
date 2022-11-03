@@ -81,7 +81,7 @@ function determineSex(species,age,billLength,billDepth,headLength,footLength) {
     if(!billDepth) { return false; }
     var dL = Math.exp(42.889-0.244*billLength-1.052*billDepth);
     dL = dL/(1+dL);
-    if(dL>0.5) {
+    if(dL>=0.5) {
       return "Female";
     } else {
       return "Male"; 
