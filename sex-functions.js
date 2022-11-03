@@ -77,11 +77,11 @@ function determineSex(species,age,billLength,billDepth,headLength,footLength) {
     
   } else if (species=="Humboldt penguin") {
     //http://www.jstor.org/stable/25148354
-    if(!footLength) { return false; }
+    if(!billLength) { return false; }
     if(!billDepth) { return false; }
     var dL = Math.exp(42.889-0.244*billLength-1.052*billDepth);
     dL = dL/(1+dL);
-    if(dL>-0.5) {
+    if(dL>0.5) {
       return "Female";
     } else {
       return "Male"; 
